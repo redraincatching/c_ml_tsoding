@@ -3,20 +3,39 @@
 #include <stdlib.h>
 #include <time.h>
 
+typedef float training_data[3];
+
 // sigmoid is one of the functions that can clamp the values given 0 < x < 1
 float sigmoidf(float x) {
 	return 1.f / (1.f + expf(-x));
 }
 
+// AND-gate
+training_data and_train[] = {
+	{0,0,0},
+	{1,0,0},
+	{0,1,0},
+	{1,1,1}
+};
+
 // OR-gate
-	// to model an AND gate, just change this data to match an AND
-float train[][3] = {
+training_data or_train[] = {
 	{0,0,0},
 	{1,0,1},
 	{0,1,1},
 	{1,1,1}
 };
-#define train_count (sizeof(train)/sizeof(train[0]))
+
+// NAND-gate
+training_data nand_train[] = {
+	{0,0,1},
+	{1,0,1},
+	{0,1,1},
+	{1,1,0}
+};
+
+training_data *train = or_train;
+size_t train_count 4
 
 // generate a random float [0,1]
 float rand_float(void) {
